@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>21-Stream</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='genre.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+    
+      
+
+    
+</head>
+<body>
+
+    <div class=container>
+        
+        {% for anime in animes %}
+
+            <div class=left_info>
+                <div class=poster_img style="background: url('{{ anime.img_url }}')"></div>
+                <div class=anime_genre>{{ anime.genre }}</div>
+
+                <div>
+                    <div class=anime_rate>Rate: {{ anime.score }}</div>
+                    <div class=anime_eps>
+                        {% if anime.episodes <= 1 %}
+                            Movie
+                        {% else %}
+                            {{ anime.episodes }} Episodes
+                        {% endif %}
+                    </div>
+
+                    <div class=anime_title>{{ anime.title }}</div>
+                </div>
+            </div>
+        {% endfor %}
+
+    </div>
+
+</body>
+</html>

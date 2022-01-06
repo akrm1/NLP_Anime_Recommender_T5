@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>21-Stream</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='anime_page.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+    
+      
+
+    
+</head>
+<body>
+
+    <div class=anime_info>
+        {% block anime %}
+            <div class=left_info>
+                <div class=poster_img style="background: url('{{ anime.img_url }}')"></div>
+                <div class=anime_genre>{{ anime.genre }}</div>
+
+                <div>
+                    <div class=anime_rate>Rate: {{ anime.score }}</div>
+                    <div class=anime_eps>
+                        {% if anime.episodes <= 1 %}
+                            Movie
+                        {% else %}
+                            {{ anime.episodes }} Episodes
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div class=anime_title>{{ anime.title }}</div>
+                <div class=anime_synopsis>{{ anime.synopsis }}</div>
+
+                <div class=watch>Watch Now > </div>
+            </div>
+        {% endblock %}
+    </div>
+
+
+
+    <div class=recommendation>
+
+        {% for season in seasons %}
+        <div class=ac_flex_title_background>
+            <div class=ac_flex_title style="font-weight: normal; font-size: 48px;">Similar Animes</div>
+        </div>
+
+        <div class=ac_flex_animes>
+
+
+            {% for anime in seasons[season] %}
+            <div class=anime_card>
+                <div class=ac_rate>
+                    {% if anime.score != -1 %}
+                        {{ anime.score }}
+                    {% else %}
+                        -
+                    {% endif %}
+                </div>
+
+                <div class=ac_poster_container>
+                    <div class=ac_poster_img style="background: url('{{ anime.img_url }}')"></div>
+                    <div class="ac_poster_title">{{ anime.title }}</div>
+                </div>
+
+                <div class=ac_info>
+                    <div class=ac_genres_text>{{ anime.genre }}</div>
+                    <div class=ac_eps_text>
+                        {% if anime.episodes <= 1 %}
+                            Movie
+                        {% else %}
+                            {{ anime.episodes }} Episodes
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        {% endfor %}
+
+    </div>
+    
+
+    <script type=text/javascript src="{{ url_for('static', filename='index.js') }}"></script>
+</body>
+</html>

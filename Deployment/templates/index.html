@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>21-Stream</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+    
+      
+
+    
+</head>
+<body>
+
+    <div>
+        <div class=website_home_poster>21 Stream</div>
+    </div>
+
+    <!-- <div class=anime_card>
+        <div class=ac_rate>8/10</div>
+
+        <div class=ac_poster_container>
+            <div class=ac_poster_img></div>
+            <div class="ac_poster_title">Kimetsu no Yaiba</div>
+        </div>
+
+        <div class=ac_info>
+            <div class=ac_genres_text>Action, Adventures, Sports, Drama</div>
+            <div class=ac_eps_text>Eps</div>
+        </div>
+    </div> -->
+
+    <div class=ac_poster_img>
+
+    </div>
+    
+
+
+
+    <div class=ac_flex>
+
+        {% for season in seasons %}
+        <div class=ac_flex_title_background>
+            <div class=ac_flex_title>{{ season }}</div>
+        </div>
+
+        <div class=ac_flex_animes>
+
+
+            {% for anime in seasons[season] %}
+            <div class=anime_card>
+                <div class=ac_rate>{{ anime.score }}</div>
+
+                <div class=ac_poster_container>
+                    <div class=ac_poster_img style="background: url('{{ anime.img_url }}')"></div>
+                    <div class="ac_poster_title">{{ anime.title }}</div>
+                </div>
+
+                <div class=ac_info>
+                    <div class=ac_genres_text>{{ anime.genre }}</div>
+                    <div class=ac_eps_text>
+                        {% if anime.episodes <= 1 %}
+                            Movie
+                        {% else %}
+                            {{ anime.episodes }} Episodes
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            
+        </div>
+        <hr style="border: none; height: 1px; background: rgb(66, 66, 66);">
+        <div style="padding-bottom: 70px;"></div>
+        {% endfor %}
+
+    </div>
+
+
+
+      
+    <script type=text/javascript src="{{ url_for('static', filename='index.js') }}"></script>
+</body>
+</html>
